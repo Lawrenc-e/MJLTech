@@ -1,0 +1,30 @@
+CREATE TABLE IF NOT EXISTS users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(120) NOT NULL,
+  email VARCHAR(190) NOT NULL UNIQUE,
+  password_hash VARCHAR(255) NOT NULL,
+  role ENUM('admin', 'developer', 'client') NOT NULL DEFAULT 'client',
+  company VARCHAR(190),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS projects (
+  id VARCHAR(20) PRIMARY KEY,
+  name VARCHAR(200) NOT NULL,
+  summary TEXT,
+  client VARCHAR(190),
+  status VARCHAR(60),
+  updated_at DATE,
+  budget VARCHAR(50),
+  timeline VARCHAR(50)
+);
+
+CREATE TABLE IF NOT EXISTS tasks (
+  id VARCHAR(20) PRIMARY KEY,
+  title VARCHAR(200) NOT NULL,
+  project VARCHAR(200),
+  status VARCHAR(60),
+  due_date DATE,
+  priority VARCHAR(50)
+);
